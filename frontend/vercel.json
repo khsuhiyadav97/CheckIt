@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/Chatsupport.py",
+      "use": "@vercel/python",
+      "config": { "includeFiles": "backend/faq.json" }
+    },
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
+  ], 
+  "routes": [
+    { "src": "/api/(.*)", "dest": "backend/Chatsupport.py" },
+    { "src": "/(docs|openapi.json)", "dest": "backend/Chatsupport.py"},
+    { "src": "/", "dest": "frontend/index.html" },
+    { "src": "/(.*)", "dest": "frontend/$1" }
+  ]
+}
